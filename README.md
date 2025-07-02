@@ -129,4 +129,78 @@ npx drizzle-kit push:pg
 ---
 
 ✅ That’s the modern T3 + Drizzle + Neon flow in a nutshell.
-If you ever want, I can give you a **1-page full example file tree + minimal config**, so you can just compare it to your project instantly.
+
+---
+
+# 🚀 Theo’s T3 Stack Principles (from your learnings)
+
+## 🔥 1. Always deploy first
+
+- ✅ After creating your T3 app, **immediately deploy to Vercel**.
+- ✅ Connect your database (Neon), set up the ORM (Drizzle or Prisma).
+- ✅ Ensure it’s a **fully working deployed environment from day 1**.
+- ⚙ That way, when builds fail later, you instantly know what caused it — no mystery between local vs production.
+
+---
+
+## 🛡 2. `t3-env` safeguards your prod
+
+- ✅ `t3-env` (using `zod`) ensures **your app won’t even build or run in production** if required environment variables are missing.
+- 🚫 This prevents silent empty `process.env.*` issues that crash your app only at runtime.
+
+---
+
+## 📝 3. Milestones & granular commits
+
+- ✅ Before diving into random coding, **define milestones / TODOs** (ex: auth done, db done, upload done).
+- ✅ After each milestone, make a **small, focused commit** and push.
+- 🐛 This makes debugging much easier if you ever need to rollback.
+
+---
+
+## 🗄 4. One database, multiple “projects”
+
+- ✅ The T3 stack + Drizzle pattern often uses **one Neon database**, but with **multiple table name prefixes** (via `pgTableCreator`).
+- ✅ Lets you isolate different apps inside the same database instance.
+
+---
+
+## ⚠ 5. Separate dev vs production environments
+
+- ✅ Never let local changes affect prod:
+
+  - Use different **Neon database schemas** (or separate databases entirely).
+  - Make sure **Clerk**, **Upstash**, or any other 3rd party keys are separate for dev vs prod.
+
+- 🛑 Changing schema or API keys in dev shouldn’t accidentally crash prod.
+
+---
+
+## 🧩 6. Component organization
+
+- ✅ **Local route-specific components** live inside:
+
+  ```
+  /app/someRoute/_components/
+  ```
+
+- ✅ **Global shared components** live inside:
+
+  ```
+  /src/components/
+  ```
+
+---
+
+## 🌍 7. Region proximity matters
+
+- ✅ When creating your Neon DB (or any other external infra), pick a region **close to your Vercel function execution region**.
+- 🛰 This drastically reduces latency and speeds up your app.
+
+---
+
+# ✅ Summary: T3 starter mantra
+
+> 🗣 **“Deploy first, environment correct, granular commits, one DB multi project, dev != prod, local vs global components, and match regions.”**
+
+---
