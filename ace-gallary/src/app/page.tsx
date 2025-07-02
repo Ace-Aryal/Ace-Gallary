@@ -1,6 +1,5 @@
 import { db } from "~/server/db";
-import { posts } from "~/server/db/schema";
-
+export const dynamic = "force-dynamic";
 const initialURLs = [
   "https://iqfvwphdv7.ufs.sh/f/HajIZ7bSvaZwRXn9yLifsetlmpKoHFQvUiSPOTuh6rx5qMg0",
   "https://iqfvwphdv7.ufs.sh/f/HajIZ7bSvaZwcfPlLgoozTvpBrwqmZ03WOL5yacfsulYKF1g",
@@ -15,6 +14,9 @@ export default async function HomePage() {
   console.log(postsRes, "posts res");
   return (
     <main className="flex flex-wrap justify-center gap-3 py-4">
+      {postsRes.map((post) => (
+        <p key={post.id}>{post.name}</p>
+      ))}
       {[
         ...initialImages,
         ...initialImages,
