@@ -1,8 +1,6 @@
 import { SignedIn, SignedOut } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
-import { eq } from "drizzle-orm";
-import { db } from "~/server/db";
-import { images as imageSchema } from "~/server/db/schema";
+
+import { getMyImages } from "~/utils/queries";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
@@ -20,12 +18,7 @@ export default async function HomePage() {
   );
 }
 async function Images() {
-  const user = await auth();
-
-  const images = await db.query.images.findMany({
-    orderBy: (model, { desc }) => desc(model.id),
-    where: eq(imageSchema.userId, user.userId),
-  });
+  const images = await getMyImages();
   return (
     <main className="flex flex-wrap justify-center gap-3 py-4">
       {images.map((image, index) => (
