@@ -12,6 +12,9 @@ const config = {
   eslint: {
     ignoreDuringBuilds: true, // tidying up so that we can do this via github actions
   },
+  images: {
+    remotePatterns: [{ hostname: "iqfvwphdv7.ufs.sh" }],
+  },
 };
 
 export default config;
