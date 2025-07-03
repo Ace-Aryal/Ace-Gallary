@@ -27,3 +27,11 @@ export const images = createTable(
   }),
   (t) => [index("name_idx").on(t.name)],
 );
+export type Image = {
+  id: number;
+  name: string;
+  url: string;
+  userId: string;
+  createdAt: Date;
+  updatedAt: Date | null;
+};

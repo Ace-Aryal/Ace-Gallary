@@ -15,9 +15,7 @@ function Modal({ children }: { children: React.ReactNode }) {
         <DialogTitle>Modal for the clicked image</DialogTitle>
       </DialogHeader>
       <DialogOverlay className="flex h-full items-center justify-center overflow-y-hidden">
-        <DialogContent className="rounded bg-gray-100 p-2">
-          {children}
-        </DialogContent>
+        <DialogContent className="rounded">{children}</DialogContent>
       </DialogOverlay>
     </Dialog>
   );
