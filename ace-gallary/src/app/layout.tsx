@@ -12,7 +12,7 @@ import type React from "react";
 import { Toaster, toast } from "sonner";
 export const metadata: Metadata = {
   title: "Ace Gallary",
-  description: "Created by Dipesh Aryal , T# stack developer",
+  description: "Created by Dipesh Aryal , T3 stack developer",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 const geist = Geist({
