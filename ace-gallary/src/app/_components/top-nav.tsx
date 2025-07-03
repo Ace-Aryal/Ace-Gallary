@@ -6,6 +6,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { UploadButton } from "~/utils/uploadthing";
 export default function TopNav() {
@@ -14,7 +15,9 @@ export default function TopNav() {
     <header className="w-full border-b border-gray-300 p-1 px-4 text-xl font-semibold sm:px-6">
       {" "}
       <nav className="flex w-full items-center justify-between">
-        <div className="text-3xl font-semibold">Gallery</div>
+        <Link href="/">
+          <div className="text-3xl font-semibold">Gallery</div>
+        </Link>
         <div>
           <SignedOut>
             <SignInButton>

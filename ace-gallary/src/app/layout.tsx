@@ -22,8 +22,8 @@ const geist = Geist({
 
 export default function RootLayout({
   children,
-  modal,
-}: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
+  model,
+}: Readonly<{ children: React.ReactNode; model: React.ReactNode }>) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${geist.variable} bg-white text-zinc-800`}>
@@ -39,8 +39,8 @@ export default function RootLayout({
           />
           <TopNav />
           {children}
-          {modal}
-          <div id="modal-root"></div>
+          {model}
+          <div id="modal-root" />
         </body>
       </html>
     </ClerkProvider>
