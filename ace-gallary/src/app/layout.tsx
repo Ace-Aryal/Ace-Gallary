@@ -8,6 +8,7 @@ import "@uploadthing/react/styles.css";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import type React from "react";
 
 export const metadata: Metadata = {
   title: "Ace Gallary",
@@ -21,7 +22,8 @@ const geist = Geist({
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+  modal,
+}: Readonly<{ children: React.ReactNode; modal: React.ReactNode }>) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${geist.variable} bg-white text-zinc-800`}>
@@ -37,6 +39,8 @@ export default function RootLayout({
           />
           <TopNav />
           {children}
+          {modal}
+          <div id="modal-root"></div>
         </body>
       </html>
     </ClerkProvider>
