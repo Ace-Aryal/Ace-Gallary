@@ -3,6 +3,12 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from "@sentry/nextjs";
+import posthog from 'posthog-js'
+
+posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
+    api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
+    defaults: '2025-05-24'
+});
 
 Sentry.init({
   dsn: "https://3d78e3c16a958f5cafe8e099dee1cb4c@o4509603436560384.ingest.de.sentry.io/4509603448750160",
