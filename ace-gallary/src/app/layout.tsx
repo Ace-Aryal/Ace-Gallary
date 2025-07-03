@@ -9,7 +9,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import type React from "react";
-
+import { Toaster, toast } from "sonner";
 export const metadata: Metadata = {
   title: "Ace Gallary",
   description: "Created by Dipesh Aryal , T# stack developer",
@@ -27,7 +27,8 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en" className={`${geist.variable} bg-white text-zinc-800`}>
-        <body>
+        <body className="flex min-h-screen flex-col">
+          <Toaster position="bottom-right" richColors />
           <NextSSRPlugin
             /**
              * The `extractRouterConfig` will extract **only** the route configs
@@ -38,9 +39,11 @@ export default function RootLayout({
             routerConfig={extractRouterConfig(ourFileRouter)}
           />
           <TopNav />
-          {children}
-          {model}
-          <div id="modal-root" />
+          <main className="flex flex-1 flex-col">
+            {children}
+            {model}
+            <div id="modal-root" />
+          </main>
         </body>
       </html>
     </ClerkProvider>

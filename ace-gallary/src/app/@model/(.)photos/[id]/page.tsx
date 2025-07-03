@@ -1,4 +1,6 @@
+import { currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
+import Modal from "~/components/ui/modal";
 import { getImage } from "~/utils/queries";
 
 export default async function PhotoModal({
@@ -12,13 +14,28 @@ export default async function PhotoModal({
     throw new Error("Unauthorized");
   }
   const image = await getImage(idAsNumber);
+  const user = await currentUser();
   return (
-    <Image
-      width={192}
-      height={192}
-      className="aspect-square w-96 rounded-md object-cover shadow"
-      src={image.url}
-      alt={image.name}
-    />
+    <div className="flex h-full w-full flex-1 justify-center">
+      <Modal>
+        {" "}
+        <Image
+          width={400}
+          height={400}
+          className="aspect-square w-96 rounded-md object-cover shadow"
+          src={image.url}
+          alt={image.name}
+        />
+        <p className="text-sm text-gray-600">
+          {image.createdAt.toLocaleDateString()}
+        </p>
+        <p className="break-all">{image.name}</p>
+        {user?.fullName && (
+          <p className="text-sm font-semibold break-all">
+            Uploaded By:{user.fullName}
+          </p>
+        )}
+      </Modal>
+    </div>
   );
 }

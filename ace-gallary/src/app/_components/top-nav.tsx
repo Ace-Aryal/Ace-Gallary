@@ -8,6 +8,7 @@ import {
 } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import { UploadButton } from "~/utils/uploadthing";
 export default function TopNav() {
   const router = useRouter();
@@ -27,15 +28,16 @@ export default function TopNav() {
             </SignInButton>
           </SignedOut>
           <SignedIn>
-            <div className="flex items-start gap-2">
+            <div className="flex items-center gap-2">
               {" "}
               <UploadButton
                 appearance={{
                   button: {
-                    color: "#000",
-                    backgroundColor: "#fff",
-                    border: "1px solid #000",
+                    color: "#2563eb", // text-blue-600
+                    backgroundColor: "#dbeafe", // bg-blue-100
+                    border: "1px solid #2563eb",
                   },
+                  allowedContent: "hidden",
                 }}
                 content={{
                   button: "Upload Image",
@@ -43,6 +45,7 @@ export default function TopNav() {
                 endpoint="imageUploader"
                 onClientUploadComplete={() => {
                   router.refresh();
+                  toast.success("Image uploaded sucessfully");
                 }}
               />
               <UserButton />
